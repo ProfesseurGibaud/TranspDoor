@@ -1,6 +1,11 @@
 from twython import Twython
 import json
 import pandas as pd
+import os
+
+
+def dossier():
+    os.chdir("Google Drive//Python//TranspDoor")
 
 
 with open("twitter_credentials.json",'r') as file:

@@ -41,7 +41,7 @@ def ArbreEntrepriseCollab()
           dict[item[1][0]].append(item[1][1])
     return dict
     
-
+dict = ArbreEntrepriseCollab()
 
 
 

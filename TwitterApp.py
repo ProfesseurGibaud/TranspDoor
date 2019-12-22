@@ -33,6 +33,8 @@ def Recherche(user,MotCle,DateDebut,DateFin):
     NombreTweets = twitter.show_user(screen_name = "CecilePrevieu")["statuses_count"]
     if NombreTweets < 200:
         List = twitter.get_user_timeline(screen_name = user,count = NombreTweets + 1)
-        for item in List:
-            print(item["text"])
+    if NombreTweets >= 200:
+        compteur = NombreTweets
+        while compteur >= 200:
+            compteur = 0 #Fallait finir
         

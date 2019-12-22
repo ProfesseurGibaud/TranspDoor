@@ -20,8 +20,9 @@ def LoadData(i):
         dfInfoGenerale = pd.read_csv(r"C:\Users\François T\Desktop\Python\TranspDoor data\Vues fusionnées\1_informations_generales.csv",sep = ";")
         dfAction = pd.read_csv(r"C:\Users\François T\Desktop\Python\TranspDoor data\Vues fusionnées\2_actions.csv",sep = ";")
         
-    return [DataInfoGenerale,DataAction]
+    return [dfInfoGenerale,dfAction]
+
 dev = 1
-LoadData(dev) 
+[dfInfoGenerale,dfAction] = LoadData(dev) 
 
 cyloby = dfInfoGenerale[["denomination","nom_prenom_collaborateur"]].drop_duplicates() #Permet d'avoir une liste des lobbyists attachés à une entreprise

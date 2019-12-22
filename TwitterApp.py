@@ -3,6 +3,12 @@ import json
 import pandas as pd
 import os
 
+"""
+
+Préambule
+
+"""
+
 
 def dossier():
     os.chdir("Google Drive//Python//TranspDoor")
@@ -13,6 +19,10 @@ with open("twitter_credentials.json",'r') as file:
     creds = json.load(file)
     
 twitter = Twython(creds['CONSUMER_KEY'], creds['CONSUMER_SECRET'])
+
+
+
+
 
 user = 'CecilePrevieu'
 

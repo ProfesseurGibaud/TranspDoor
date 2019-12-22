@@ -21,3 +21,5 @@ def LoadData(i):
         DataAction = pd.read_csv(r"C:\Users\François T\Desktop\Python\TranspDoor data\Vues fusionnées\2_actions.csv",sep = ";")
         
     return [DataInfoGenerale,DataAction]
+    
+    

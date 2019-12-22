@@ -1,70 +1,44 @@
 from twython import Twython
 import json
-
+import pandas as pd
 import os
 
 
 def dossier():
     os.chdir("Google Drive//Python//TranspDoor")
 
+dossier()
 
 with open("twitter_credentials.json",'r') as file:
     creds = json.load(file)
     
-python_tweets = Twython(creds['CONSUMER_KEY'], creds['CONSUMER_SECRET'])
+twitter = Twython(creds['CONSUMER_KEY'], creds['CONSUMER_SECRET'])
 
+user = 'CecilePrevieu'
 
-
-query = {'q': 'learn python',
-        'result_type': 'popular',
-        'count': 10,
-        'lang': 'en',
+query = {'q': 'Storengy',
+        'user' : 'user',
+        'count': 100
         }
         
 
 
 # Search tweets
+
+
 dict_ = {'user': [], 'date': [], 'text': [], 'favorite_count': []}
-for status in python_tweets.search(**query)['statuses']:
-    dict_['user'].append(status['user']['screen_name'])
-    dict_['date'].append(status['created_at'])
-    dict_['text'].append(status['text'])
-    dict_['favorite_count'].append(status['favorite_count'])
+for status in twitter.search(**query)['statuses']:
+    print(status['user']['screen_name'])
+    if status['user']['screen_name'] == user:
+        dict_2['user'].append(status['user']['screen_name'])
+        dict_2['date'].append(status['created_at'])
+        dict_2['text'].append(status['text'])
+        dict_2['favorite_count'].append(status['favorite_count'])    
 
 # Structure data in a pandas DataFrame for easier manipulation
-df = pd.DataFrame(dict_)
+
+
+df = pd.DataFrame(dict_2)
 df.sort_values(by='favorite_count', inplace=True, ascending=False)
 df.head(5)
-
-
-
-
-
-
-
-
-
-import time
-from twython import TwythonStreamer
-
-TERMS='social'
-
-APP_KEY='MY APP KEY'
-APP_SECRET='MY APP SECRET'
-OAUTH_TOKEN='MY OATH TOKEN'
-OAUTH_TOKEN_SECRET='MY OATH TOKEN SECRET'
-FOLLOW  = "PREVIEU Cécile" #Personne d'intéret
-
-
-class BlinkyStreamer(TwythonStreamer):
-    def on_success(self, data):
-        if 'text' in data:
-            print(data['text'].encode('utf-8'))
-            
-            
-try:
-        stream = BlinkyStreamer(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
-        stream.statuses.filter(track=TERMS,follow = FOLLOW)
-except:
-    KeyboardInterrupt
 

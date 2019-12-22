@@ -46,6 +46,7 @@ dict = ArbreEntrepriseCollab()
 
 
 
+
 for i in actionlob:
     for j in cyloby:
         if cyloby.denomination == actionlob.denomination:
